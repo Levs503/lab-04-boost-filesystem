@@ -35,14 +35,20 @@ find_package(GTest CONFIG REQUIRED)
 add_library(lab-04-boost-filesystem STATIC
         # enum your files and delete this comment
         ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
-        sources/main.cpp sources/Account.cpp include/Account.h)
+         sources/Account.cpp)
 add_executable(tests
         # TODO: enum your files and delete this comment
         ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
         )
 
+
+add_executable(main  ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp)
+target_include_directories(main
+        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+        )
+target_link_libraries(main PUBLIC lab-04-boost-filesystem)
+target_link_libraries(main PUBLIC Boost::filesystem)
 target_link_libraries(lab-04-boost-filesystem PUBLIC Boost::filesystem)
-# TODO: change template word to project name and delete this comment
 target_include_directories(lab-04-boost-filesystem
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
         )

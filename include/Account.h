@@ -14,7 +14,10 @@ class Account {
   std::string lastDate;
   Account();
   bool operator==(const Account& oth) const;
+  std::ostream& operator<<(std::ostream& out);
 
 };
+
+std::ostream& operator<<(std::ostream& out, const Account& acc);
 
 #endif  // LAB_04_BOOST_FILESYSTEM_ACCOUNT_H

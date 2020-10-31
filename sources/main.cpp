@@ -4,6 +4,7 @@
 #include <boost/filesystem.hpp>
 #include <map>
 #include <set>
+#include<iostream>
 #include <sstream>
 #include <unordered_set>
 
@@ -25,23 +26,20 @@ void file_analysis(
   if (file_name.extension().string() == ".txt") {
     std::istringstream file(file_name.string());
     std::string balance;
-    getline(file, balance, '_');
-    file.get();
     std::string number_of_account;
-    getline(file, number_of_account, '_');
-    file.get();
-    std::string data;
-    getline(file, data, '.');
-    file.get();
+    std::string date;
     std::string txt;
+    getline(file, balance, '_');
+    getline(file, number_of_account, '_');
+    getline(file, date, '.');
     file >> txt;
     if (txt == "txt" && balance == "balance" && isNumber(number_of_account) &&
-        isNumber(data) && number_of_account.size() == 8 && data.size() == 8) {
+        isNumber(date) && number_of_account.size() == 8 && date.size() == 8) {
       array_number_of_account[directory_name].insert(number_of_account);
       array_of_account[number_of_account].num_account = number_of_account;
       array_of_account[number_of_account].amount_of_files++;
       array_of_account[number_of_account].broker = directory_name;
-      if(data > array_of_account[number_of_account].lastDate) array_of_account[number_of_account].lastDate = data;
+      if(date > array_of_account[number_of_account].lastDate) array_of_account[number_of_account].lastDate = date;
     }
   }
 }
@@ -68,14 +66,23 @@ void read_directory(
 }
 
 int main(int argc, char* argv[]) {
-  std::unordered_map<std::string, std::unordered_set<std::string>> array_number_of_account;
-  std::map<std::string, Account> array_of_account;
+  std::unordered_map<std::string, std::unordered_set<std::string>> array_number_of_account;//broker->set<number>
+  std::map<std::string, Account> array_of_account; // number->Account
   const fs::path first_path =
       argc >= 2 ? argv[1] : fs::current_path();
+
   if (fs::exists(first_path)) {
     if (fs::is_directory(first_path))
       read_directory(first_path, array_number_of_account, array_of_account);
   } else {
     throw std::invalid_argument("wrong path");
   }
+  for(auto& g: array_number_of_account){
+    for (const auto& h: g.second){
+      std::cout<<array_of_account[h];
+    }
+  }
+  return 1;
 }
+
+
