@@ -11,6 +11,12 @@ std::ostream& Account::operator<<(std::ostream& out) {
   out<<"broker:"<< broker<<" account:"<< num_account<<" files:"<<amount_of_files<<" last date:"<< lastDate<<std::endl;
   return out;
 }
+Account::Account(const std::string& a,const std::string& b, size_t c,const std::string& d) {
+  broker = a;
+  num_account = b;
+  amount_of_files = c;
+  lastDate = d;
+}
 
 
 std::ostream& operator<<(std::ostream& out, const Account& oth){
