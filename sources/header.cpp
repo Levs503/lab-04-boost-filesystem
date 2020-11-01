@@ -54,10 +54,12 @@ void read_directory(
     if (fs::is_regular_file(file.path())) {
       file_analysis(file.path().filename(), array_number_of_account,
                     array_of_account, directory_name);
-    } else if (fs::is_directory(file.path()))
-      directories.push_back(file.path());
-    else if (fs::is_symlink(file.path()))
-      directories.push_back(fs::read_symlink(file.path()));
+    } else {
+      if (fs::is_directory(file.path()))
+        directories.push_back(file.path());
+      else if (fs::is_symlink(file.path()))
+        directories.push_back(fs::read_symlink(file.path()));
+    }
   }
   for (const auto& x : directories) {
     read_directory(x, array_number_of_account, array_of_account,
