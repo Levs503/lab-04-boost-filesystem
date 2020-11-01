@@ -2,7 +2,9 @@
 // Created by levs503 on 02.11.2020.
 //
 #include "header.hpp"
+
 #include <sstream>
+
 #include "Account.h"
 namespace fs = boost::filesystem;
 
@@ -15,7 +17,8 @@ bool isNumber(std::string& str) {
 
 void file_analysis(
     const fs::path& file_name,
-    std::unordered_map<std::string, std::unordered_set<std::string>>& array_number_of_account,
+    std::unordered_map<std::string, std::unordered_set<std::string>>&
+        array_number_of_account,
     std::map<std::string, Account>& array_of_account,
     const std::string& directory_name) {
   if (file_name.extension().string() == ".txt") {
@@ -34,14 +37,16 @@ void file_analysis(
       array_of_account[number_of_account].num_account = number_of_account;
       array_of_account[number_of_account].amount_of_files++;
       array_of_account[number_of_account].broker = directory_name;
-      if(date > array_of_account[number_of_account].lastDate) array_of_account[number_of_account].lastDate = date;
+      if (date > array_of_account[number_of_account].lastDate)
+        array_of_account[number_of_account].lastDate = date;
     }
   }
 }
 
 void read_directory(
     const fs::path& path,
-    std::unordered_map<std::string, std::unordered_set<std::string>>& array_number_of_account,
+    std::unordered_map<std::string, std::unordered_set<std::string>>&
+        array_number_of_account,
     std::map<std::string, Account>& array_of_account,
     const std::string& directory_name) {
   std::vector<fs::path> directories;

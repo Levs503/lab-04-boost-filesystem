@@ -8,7 +8,8 @@
 #include <string>
 class Account {
  public:
-  Account(const std::string& a,const std::string& b, size_t c,const std::string& d);
+  Account(const std::string& a, const std::string& b, size_t c,
+          const std::string& d);
   std::string broker;
   std::string num_account;
   size_t amount_of_files;
@@ -16,7 +17,6 @@ class Account {
   Account();
   bool operator==(const Account& oth) const;
   std::ostream& operator<<(std::ostream& out);
-
 };
 
 std::ostream& operator<<(std::ostream& out, const Account& acc);
