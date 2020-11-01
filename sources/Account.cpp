@@ -1,4 +1,4 @@
-//
+// Copyright [2020] <Lev Semkov>
 // Created by levs503 on 30.10.2020.
 //
 #include "Account.h"

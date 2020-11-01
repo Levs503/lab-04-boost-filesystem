@@ -1,4 +1,4 @@
-//
+// Copyright [2020] <Lev Semkov>
 // Created by levs503 on 29.10.2020.
 //
 #include <boost/filesystem.hpp>
