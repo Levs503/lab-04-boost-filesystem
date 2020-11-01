@@ -4,12 +4,13 @@
 #define INCLUDE_HEADER_HPP_
 #pragma once
 #include <Account.h>
-
+#include <unordered_map>
 #include <boost/filesystem.hpp>
 #include <unordered_set>
-
+#include <map>
 #include "Account.h"
 #include "header.hpp"
+#include <string>
 
 namespace fs = boost::filesystem;
 

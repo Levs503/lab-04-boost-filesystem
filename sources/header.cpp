@@ -1,4 +1,4 @@
-//
+// Copyright [2020] <Lev Semkov>
 // Created by levs503 on 02.11.2020.
 //
 #include "header.hpp"
